@@ -1,5 +1,5 @@
 # Quant Challenge
-
+XXX
 * [Background](#Background)
 * [Energy Trading in a Nutshell](#Energy-Trading-in-a-Nutshell)
 * [The Challenge](#The-Challenge)
@@ -11,12 +11,12 @@
 
 
 ## Background
-This challenge is meant to give you a taste of the type of problems our 
-developers have to solve on a daily basis. It helps you decide if you might have fun working 
-with us. 
-It is also an opportunity to demonstrate your technical skills and the ability to understand and work with our domain.
+This challenge is meant to give you a taste of the type of problems our quants and developers have to solve on a daily basis. It helps you decide if you might have fun working with us. It is also an opportunity to demonstrate your technical/statistical/data skills and the ability to understand and work with our domain. It includes two tasks … XXX
 
-## Energy Trading in a Nutshell
+
+## Task 1: Minimal Reporting tool
+
+### Overview
 Energy trading happens in an **exchange**, a market where traders working for energy producers 
 (solar plants, nuclear power plants, ...) and consumers (B2C energy providers, big 
 energy consuming industries like steel and trains...) submit orders to buy and sell energy.
