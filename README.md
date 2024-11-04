@@ -36,28 +36,20 @@ For example if the orderbook contains an order to sell 10 mw for 10 euros/mwh an
 submits an order to buy 5 mw for 11 euros/mwh, the orders are matched by the exchange and a trade is 
 generated for 5mw at 10 euros/mwh.
 
-Those trades are saved by flex power and used to compute various indicators on the 
-performance of our trading strategies. 
+Those trades are saved by flex power and used to compute various indicators on the performance of our trading strategies. 
+The first task bases on a collection of such trades and tries to implement a minimal reporting tool for different trading strategies.
 
-The challenge bases on a collection of such trades and tries to implement a couple of functionalities
-flex power has. 
+The task models a trade as follows:
+•	Trade:
+o	id: integer
+o	price: float
+o	quantity: integer
+o	side: string, buy or sell
+o	strategy_id: string
+![image](https://github.com/user-attachments/assets/e2ec9a1e-bb97-4394-8c85-df701d3dcd68)
 
-## The Challenge
 
-### Short description:
-We want to setup a minimal reporting tool for different trading strategies.
-
-### Data Model
-The challenge models a **trade** as follows:
-- Trade:
-  - id: integer
-  - price: float
-  - quantity: integer
-  - side: string, buy or sell
-  - strategy_id: string
-
-### Assignments
-#### Task 1: 
+### Task 1.1: 
 Write a function that computes the total buy volume for flex power, another that computes the total sell volume.
 ```python
 
@@ -68,7 +60,7 @@ def compute_total_sell_volume(*args, **kwargs) -> float:
     pass
 ```
 
-#### Task 2: 
+#### Task 1.2: 
 Write a function that computes the PnL (profit and loss) of each strategy in euros. It's defined as the sum of the incomes 
 realized with each trade.
 
@@ -79,7 +71,7 @@ def compute_pnl(strategy_id: str, *args, **kwargs) -> float:
 ```
 This function should return 0 it there are no trades that correspond to the strategy id.
 
-#### Task3: 
+#### Task 1.3: 
 Expose the function defined in the second task as an entrypoint of a web application. 
 
 Here is the corresponding API definition.
@@ -138,6 +130,39 @@ price REAL NOT NULL,
 side TEXT NOT NULL CHECK (side IN ('buy', 'sell')),
 strategy TEXT NOT NULL
 ```
+
+
+## Task 2: Data analysis and building a trading strategy
+
+### Overview
+
+Power prices depend on external factors, most importantly the (forecasted) infeed from variable renewable energy sources PV and wind. In this task you are supposed to do some data analysis, get to know this correlation and finally build your own trading strategy based on wind and pv forecasts. The trading strategy is task 2.7, try to spend most of your time on that one. It is a very open task and there is no one correct solution so get creative here. We encourage you though to present clean results, nice graphs and generally good work. ![image](https://github.com/user-attachments/assets/288569cd-5271-49c3-97be-62cc28b55e4b)
+
+### Setup
+
+
+### Task 2.1:
+How much Wind/PV Power was forecasted to produced in German in 2021 [in MWh] on Day Ahead (da) and on Intraday (id). Hint: Be careful: you have values in MW on a quarter hourly basis, think how this transaltes into hourly values.
+
+### Task 2.2:
+Show the average Wind/Solar production for 2021 over a 24h period for Intraday id and Day Ahead da (4 lines in one graph)
+
+### Task 2.3:
+What was the average value [in EUR/MWh] for Wind/Solar Power in 2021 using the da forecast and using da h prices. The average value is defined as the average hourly value that a Wind/PV farm owner would have received for their product. Is the average value of Wind and PV higher or lower than the average da price? Why could it be higher/lower?
+
+### Task 2.4:
+Find the Day with the highest renewable energy production and with the lowest renewable energy production in 2021. What was the avaerage Day Ahead Price levels on these days? How do you explain the difference in prices?
+
+### Task 2.5:
+What is the average hourly da price during week days vs during weekends. Why do you think average prices may differ?
+
+### Task 2.6:
+How much revenue would you generate with a battery with a capacity of 1 MWh which you can fully charge and fully discharge (1 Cycle) every day in 2021? Think about when you would charge and when you would discharge and apply this rule for each day of the year.
+
+### Task 2.7:
+Come up with a trading strategy that makes money between the day ahead hourly prices and the intraday hourly prices. A strategy could be something like, always buy hour 19-20 on day ahead and sell it on intraday. You can look at certain times, weekdays, seasons, production levels of wind and solar. Your strategy can have a few input paramters such as time, renewable produciton etc, and then a decision output between two prices. I.e. when do you want to go long and short. Show the cumulative performance of this strategy with a 100 MW position. Show your results and quickly explain your reasoning of why you think this strategy might be a good idea and why it does or does not work.
+
+
 
 ## Submission Instructions
 Create a Github repository containing your solution and provide us with access so that we can review your 
