@@ -159,13 +159,13 @@ Here's some information on the dataset to get you started.
 
 Following is a short exlainer of the supplied timeseries:
 
-- "Wind Day Ahead Forecast" gives the total forecasted amount of wind power expected to be produced at given quarter. The day-ahead forecast is available before the day-ahead auction takes place, so at d-1, before 12:00h. 
+- "Wind Day Ahead Forecast" gives the total forecasted amount of wind power expected to be produced in Germany at given quarter. The day-ahead forecast is available before the day-ahead auction takes place, so at d-1, before 12:00h. 
  
-- "Wind Intraday Forecast" gives the total forecasted amount of wind power expected to be produced at given quarter. The intraday forecast is the last available forecast before the intraday markets close.
+- "Wind Intraday Forecast" gives the total forecasted amount of wind power expected to be produced in Germany at given quarter. The intraday forecast is the last available forecast before the intraday markets close.
 
-- "PV Day Ahead Forecast" gives the total forecasted amount of PV power expected to be produced at given quarter. The day-ahead forecast is available before the day-ahead auction takes place, so at d-1, before 12:00h. 
+- "PV Day Ahead Forecast" gives the total forecasted amount of PV power expected to be produced in Germany at given quarter. The day-ahead forecast is available before the day-ahead auction takes place, so at d-1, before 12:00h. 
  
-- "PV Intraday Forecast" gives the total forecasted amount of PV power expected to be produced at given quarter. The intraday forecast is the last available forecast before the intraday markets close.
+- "PV Intraday Forecast" gives the total forecasted amount of PV power expected to be produced in Germany at given quarter. The intraday forecast is the last available forecast before the intraday markets close.
 
 - "Day Ahead price hourly" gives the realized prices on the Day-ahead auction for that hour.
   
