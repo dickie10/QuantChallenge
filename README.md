@@ -181,16 +181,16 @@ This repository contains an Excel file called "analysis_task_data.xlsx". Feel fr
 
 
 ### Task 2.1:
-How much Wind/PV Power was forecasted to produced in German in 2021 [in MWh] on Day Ahead (da) and on Intraday (id). Hint: Be careful: you have values in MW on a quarter hourly basis, think how this transaltes into hourly values.
+How much Wind/PV Power was forecasted to produced in German in 2021 [in MWh] on Day Ahead (da) and on Intraday (id). Hint: Be careful: you have values in MW on a quarter hourly basis, think how this translates into hourly values.
 
 ### Task 2.2:
-Show the average Wind/Solar production for 2021 over a 24h period for Intraday id and Day Ahead da (4 lines in one graph)
+Show the average Wind/Solar production for 2021 over a 24h period for Intraday and Day Ahead (4 lines in one graph).
 
 ### Task 2.3:
-What was the average value [in EUR/MWh] for Wind/Solar Power in 2021 using the da forecast and using da h prices. The average value is defined as the average hourly value that a Wind/PV farm owner would have received for their product. Is the average value of Wind and PV higher or lower than the average da price? Why could it be higher/lower?
+What was the average value [in EUR/MWh] for Wind/Solar Power in 2021 using the da forecast and using da h prices? The average value is defined as the average hourly value that a Wind/PV farm owner would have received for their product. Is the average value of Wind and PV higher or lower than the average da price? Why could it be higher/lower?
 
 ### Task 2.4:
-Find the Day with the highest renewable energy production and with the lowest renewable energy production in 2021. What was the avaerage Day Ahead Price levels on these days? How do you explain the difference in prices?
+Find the Day with the highest renewable energy production and with the lowest renewable energy production in 2021. What was the average Day Ahead Price levels on these days? How do you explain the difference in prices?
 
 ### Task 2.5:
 What is the average hourly da price during week days vs during weekends. Why do you think average prices may differ?
@@ -199,7 +199,7 @@ What is the average hourly da price during week days vs during weekends. Why do 
 How much revenue would you generate with a battery with a capacity of 1 MWh which you can fully charge and fully discharge (1 Cycle) every day in 2021? Think about when you would charge and when you would discharge and apply this rule for each day of the year.
 
 ### Task 2.7:
-Come up with a trading strategy that makes money between the day ahead hourly prices and the intraday hourly prices. A strategy could be something like, always buy hour 19-20 on day ahead and sell it on intraday. You can look at certain times, weekdays, seasons, production levels of wind and solar. Your strategy can have a few input paramters such as time, renewable produciton etc, and then a decision output between two prices. I.e. when do you want to go long and short. Show the cumulative performance of this strategy with a 100 MW position. Show your results and quickly explain your reasoning of why you think this strategy might be a good idea and why it does or does not work.
+Come up with a trading strategy that makes money between the day ahead hourly prices and the intraday hourly prices. A strategy could be something like, always buy hour 19-20 on day ahead and sell it on intraday. You can look at certain times, weekdays, seasons, production levels of wind and solar. Your strategy can have a few input paramters such as time, renewable production etc, and then a decision output between two prices. I.e. when do you want to go long and short. Show the cumulative performance of this strategy with a 100 MW position. Show your results and quickly explain your reasoning of why you think this strategy might be a good idea and why it does or does not work.
 
 
 ## Submission Instructions
