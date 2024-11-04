@@ -18,10 +18,6 @@
   * [Task 2.6: Battery Revenue Calculation](#task-26-battery-revenue-calculation)
   * [Task 2.7: Trading Strategy Development](#task-27-trading-strategy-development)
 * [Submission Instructions](#submission-instructions)
-* [Notes](#notes)
-
-
-
 
 
 ## Background
