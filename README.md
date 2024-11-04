@@ -1,7 +1,7 @@
-# Quant Challenge
-XXX
+# FlexPower Quant Challenge
+
 * [Background](#Background)
-* [Energy Trading in a Nutshell](#Energy-Trading-in-a-Nutshell)
+* [Task 1: Minimal Reporting tool](#Task-1:-Minimal-Reporting-tool)
 * [The Challenge](#The-Challenge)
   * [Data Model](#Data-Model)
   * [Assignments](#Assignments)
