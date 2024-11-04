@@ -61,15 +61,20 @@ The task models a trade as follows:
   - side: string, buy or sell
   - strategy_id: string
 
-### Setup:
-This repository contains a sqlite file trades.sqlite, containing a database named trades.
-The database contains a table called epex_2022_12_20_12-13, with all trades made by flex power traders on the EPEX exchange for the delivery period 12:00 to 13:00 on 2022-12-20.
+## Setup
+The repository contains a sqlite file `trades.sqlite`, containing a database named `trades`.
+
+The database contains a table called `epex_2022_12_20_12-13`, with all trades made by flex power traders 
+ on the EPEX exchange for the delivery period 12:00 to 13:00 on 2022-12-20.
+
 The schema is the following
+```sqlite
 id TEXT PRIMARY KEY,
 quantity INTEGER NOT NULL,
 price REAL NOT NULL,
 side TEXT NOT NULL CHECK (side IN ('buy', 'sell')),
 strategy TEXT NOT NULL
+```
 
 ### Task 1.1: 
 Write a function that computes the total buy volume for flex power, another that computes the total sell volume.
