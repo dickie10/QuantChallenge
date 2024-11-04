@@ -40,12 +40,12 @@ Those trades are saved by flex power and used to compute various indicators on t
 The first task bases on a collection of such trades and tries to implement a minimal reporting tool for different trading strategies.
 
 The task models a trade as follows:
-•	Trade:
-o	id: integer
-o	price: float
-o	quantity: integer
-o	side: string, buy or sell
-o	strategy_id: string
+- Trade:
+  - id: integer
+  - price: float
+  - quantity: integer
+  - side: string, buy or sell
+  - strategy_id: string
 
 ### Task 1.1: 
 Write a function that computes the total buy volume for flex power, another that computes the total sell volume.
