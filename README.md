@@ -85,7 +85,7 @@ def compute_total_sell_volume(*args, **kwargs) -> float:
     pass
 ```
 
-#### Task 1.2: 
+### Task 1.2: 
 Write a function that computes the PnL (profit and loss) of each strategy in euros. It's defined as the sum of the incomes 
 realized with each trade.
 
@@ -97,7 +97,7 @@ def compute_pnl(strategy_id: str, *args, **kwargs) -> float:
 This function should return 0 it there are no trades that correspond to the strategy id.
 
 
-#### Task 1.3: 
+### Task 1.3: 
 Expose the function defined in the second task as an entrypoint of a web application. 
 
 Here is the corresponding API definition.
@@ -208,10 +208,3 @@ Feel free to add notes about technology choices and design decisions, as well as
 keep in mind when reviewing your code.
 
 Ideally, the deliverable should be in python 3.*.
-
-## Notes
-* Spend as much time as you want on the challenge to produce something you are proud of. The intended time is a couple 
-of hours.
-* If you can think of any other cool features that you could implement, go for it! Just be sure to describe them in the readme.
-* If you already have similar personal projects that you would like to submit instead of this one, it's also possible.
-Just make sure that you include an exhaustive documentation on what it's about and how we can start it.
