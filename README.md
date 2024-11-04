@@ -46,8 +46,6 @@ o	price: float
 o	quantity: integer
 o	side: string, buy or sell
 o	strategy_id: string
-![image](https://github.com/user-attachments/assets/e2ec9a1e-bb97-4394-8c85-df701d3dcd68)
-
 
 ### Task 1.1: 
 Write a function that computes the total buy volume for flex power, another that computes the total sell volume.
@@ -136,7 +134,7 @@ strategy TEXT NOT NULL
 
 ### Overview
 
-Power prices depend on external factors, most importantly the (forecasted) infeed from variable renewable energy sources PV and wind. In this task you are supposed to do some data analysis, get to know this correlation and finally build your own trading strategy based on wind and pv forecasts. The trading strategy is task 2.7, try to spend most of your time on that one. It is a very open task and there is no one correct solution so get creative here. We encourage you though to present clean results, nice graphs and generally good work. ![image](https://github.com/user-attachments/assets/288569cd-5271-49c3-97be-62cc28b55e4b)
+Power prices depend on external factors, most importantly the (forecasted) infeed from variable renewable energy sources PV and wind. In this task you are supposed to do some data analysis, get to know this correlation and finally build your own trading strategy based on wind and pv forecasts. The trading strategy is task 2.7, try to spend most of your time on that one. It is a very open task and there is no one correct solution so get creative here. We encourage you though to present clean results, nice graphs and generally good work.
 
 ### Setup
 
