@@ -64,7 +64,7 @@ The task models a trade as follows:
 ## Setup
 The repository contains a sqlite file `trades.sqlite`, containing a database named `trades`.
 
-The database contains a table called `epex_2022_12_20_12-13`, with all trades made by flex power traders 
+The database contains a table called `epex_12_20_12_13`, with all trades made by flex power traders 
  on the EPEX exchange for the delivery period 12:00 to 13:00 on 2022-12-20.
 
 The schema is the following
