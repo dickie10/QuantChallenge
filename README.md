@@ -59,7 +59,7 @@ This will execute:
 ## Optimized Battery Trading Strategy
 
 ### Overview
-This strategy optimizes revenue generation using a **1 MWh battery** by dynamically selecting the best times to **charge** and **discharge** based on **both Day Ahead (DA) and Intraday (ID) prices**.
+This strategy optimizes revenue generation using a **1 MWh battery** by dynamically selecting the best times to **charge** and **discharge** based on **both Day Ahead (DA) and Intraday (ID) prices**.I had an idea with two approaches,where I thought the second approach would be better.
 
 ---
 
