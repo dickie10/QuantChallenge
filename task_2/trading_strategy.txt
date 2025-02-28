@@ -1,8 +1,0 @@
-Trading Conditions:
-For each hour of the day, you check whether the conditions meet the following:
-
-Buy condition (Day Ahead market):
-If the forecasted renewable production (Wind + PV) is above average for the day, and the Day Ahead price is below its average for the day, buy the energy.
-Sell condition (Intraday market):
-If the forecasted renewable production (Wind + PV) is below average for the day, and the Intraday price is above its average for the day, sell the energy. 
-

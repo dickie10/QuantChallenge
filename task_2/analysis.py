@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 ########### Task 2.1 ######### 
 
 def forecasted_power(data):
-    #converting the qurately hour data to hourly data 
+    #converting the qurately hour data to hourly data  
+    print("########## Task2.1 #################")
     hourly_data = data.resample("h").sum()/4
     #returning the sum of the each product forecast (DA/Intraday) in hourly basis 
     return hourly_data.sum()   
@@ -44,9 +45,13 @@ def plot_power(data):
     plt.legend()
     plt.grid(True) 
 
-    # Save the plot as an image file
-    plt.savefig('average_wind_solar_production_2021.png')
+    print("####Task 2.2 ########") 
+    # Save the plot as an image file 
+    print("Figure saved in 'average_wind_solar_production_2021.png' ")
+    plt.savefig('average_wind_solar_production_2021.png')  
+    print("END task 2.2")
     return average_pv_da, average_wind_da
+
 
 
 ############# Task 2.3 ############################# 
@@ -68,7 +73,9 @@ def cmp_pv_wind(df):
     #  Compute the average DA price
     avg_da_price = df_hourly["Day Ahead Price hourly [in EUR/MWh]"].mean()
 
+
     #  Print results
+    print("####Task 2.3 ########")
     print(f"Average Value for Wind Power: {wind_avg_value:.2f} EUR/MWh")
     print(f"Average Value for Solar (PV) Power: {pv_avg_value:.2f} EUR/MWh")
     print(f"Average Day-Ahead Price: {avg_da_price:.2f} EUR/MWh")
@@ -96,7 +103,8 @@ def cmp_pv_wind(df):
     print("Wind & PV tend to generate more during low-price periods (e.g., night for wind, midday for solar).")
     print("Their high supply reduces market prices (Merit Order Effect), lowering their average value.")
     print("Wind/PV production often misses peak-price hours (morning & evening demand peaks).")
-    print("As a result, the average value received by Wind/PV is typically lower than the average DA price.")
+    print("As a result, the average value received by Wind/PV is typically lower than the average DA price.") 
+    print("End of Task 2.3")
 
 
 ################ Task 2.4 #################################### 
@@ -125,6 +133,7 @@ def max_min_power(df):
     lowest_day_price = daily_prices.loc[lowest_day]
 
     # Print results
+    print("####Task 2.4 ########")
     print(f"Highest Renewable Production Day: {highest_day.date()}, DA Price: {highest_day_price:.2f} EUR/MWh")
     print(f"Lowest Renewable Production Day: {lowest_day.date()}, DA Price: {lowest_day_price:.2f} EUR/MWh") 
 
@@ -145,7 +154,8 @@ def max_min_power(df):
     print("due to the merit-order effect. Renewables like PV and Wind have zero marginal costs,")
     print("meaning they can meet demand at lower prices.")
     print("When renewable generation is low, fossil fuel-based power generation is relied upon,")
-    print("which has higher operating costs, driving the DA prices higher.")
+    print("which has higher operating costs, driving the DA prices higher.") 
+    print("End of Task 2.4")
 
 ########### Task 2.5 #############################
 def demand_weekday_weekend(df): 
@@ -164,49 +174,49 @@ def demand_weekday_weekend(df):
     avg_da_weekdays = weekdays['Day Ahead Price hourly [in EUR/MWh]'].mean()
     avg_da_weekends = weekends['Day Ahead Price hourly [in EUR/MWh]'].mean()
 
+    print("####Task 2.5########")
     # Print the results
     print(f"Average DA Price during Weekdays: {avg_da_weekdays:.2f} EUR/MWh")
     print(f"Average DA Price during Weekends: {avg_da_weekends:.2f} EUR/MWh")
 
     # Conclusion about the possible reason for price differences
-    print("\nConclusion:")
+    print("\nConclusion")
     print("Average prices may differ between weekdays and weekends due to varying demand patterns.")
     print("1. On weekdays, demand tends to be higher due to industrial and commercial activity, resulting in higher prices.")
     print("2. On weekends, demand may be lower as industrial and commercial activities are reduced, leading to lower prices.")
-    print("3. Additionally, renewable energy availability (such as solar power on weekends) may influence prices, but above points seems more reasonable answer.")
+    print("3. Additionally, renewable energy availability (such as solar power on weekends) may influence prices, but above points seems more reasonable answer.") 
+    print("End of Task 2.5")
 
 ####### Task 2.6 ############################################## 
 
-def calculate_battery_revenue(df): 
-
+def battery_revenue(df):
     """
-    idea: to charge when the da is low and discharge when da is high  
-    """  
-    df = convert_hour(df)
-    df['day'] = df.index.date 
-    
-    # Calculate the low price (charging hours) and high price (discharging hours)
-    # Let's assume the battery is charged during the lowest 12-hour period (charging) and discharged during the highest 12-hour period (discharging)
-   
-    revenue_per_day = [] 
+    Optimized strategy: Charge at the lowest price (DA or ID) and discharge at the highest price (DA or ID)
+    """
 
-    # Loop through each day of the year
-    for day,group in df.groupby('day'):
-        # Sort prices for the day
-        sorted_prices = group['Day Ahead Price hourly [in EUR/MWh]'].sort_values()
+    df = convert_hour(df)  # Ensure datetime format
+    df['day'] = df.index.date  # Extract date from timestamp
 
-        # The 12 lowest prices will be used for charging (you can adjust if needed)
-        charging_prices = sorted_prices.head(12)  # Charging during lowest 12 hours
-        discharging_prices = sorted_prices.tail(12)  # Discharging during highest 12 hours
+    revenue_per_day = []
 
-        # Revenue is the sum of charging during low price and discharging during high price
-        revenue_day = discharging_prices.sum() - charging_prices.sum()
+    for day, group in df.groupby('day'):
+        # Combine DA and ID prices for better optimization
+        group["Best Charge Price"] = group[['Day Ahead Price hourly [in EUR/MWh]', 'Intraday Price Hourly  [in EUR/MWh]']].min(axis=1)
+        group["Best Discharge Price"] = group[['Day Ahead Price hourly [in EUR/MWh]', 'Intraday Price Hourly  [in EUR/MWh]']].max(axis=1)
+
+        # Sort by best charging prices (ascending) and best discharging prices (descending)
+        charge_hours = group["Best Charge Price"].sort_values().head(12)
+        discharge_hours = group["Best Discharge Price"].sort_values(ascending=False).head(12)
+
+        # Compute daily revenue
+        revenue_day = discharge_hours.sum() - charge_hours.sum()
         revenue_per_day.append(revenue_day)
 
     # Total revenue for the year
     total_revenue = sum(revenue_per_day)
 
-    return total_revenue, revenue_per_day 
+    return total_revenue, revenue_per_day
+
 
 ########## Task 2.7 ############################
 
@@ -218,7 +228,7 @@ def convert_hour(df):
     return df 
 
 """"
-in trading_strategy.py file and stratgy explained in trading_strategy.txt
+in trading_strategy.py file 
 """
 
 
@@ -260,9 +270,11 @@ if __name__ == "__main__":
     demand_weekday_weekend(df) 
     
     # Calculate total revenue and daily revenues
-    total_revenue, revenue_per_day = calculate_battery_revenue(df) 
+    print("########## Task 2.6 ###################")
+    total_revenue, revenue_per_day = battery_revenue(df) 
     # Output the results 
-    print(f"Total revenue for the year from the battery (1 MWh) charging and discharging: {total_revenue:.2f} EUR")
+    print(f"Total revenue for the year from the battery (1 MWh) charging and discharging: {total_revenue:.2f} EUR") 
+    print("######## End Task ##################")
      
     
    

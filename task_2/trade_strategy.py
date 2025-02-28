@@ -1,6 +1,5 @@
-import pandas as pd 
-import plotly.graph_objects as go 
-
+import pandas as pd
+import plotly.graph_objects as go
 
 def trading_strategy(df, position_size=100):
     """
@@ -30,15 +29,15 @@ def trading_strategy(df, position_size=100):
         
         for hour in hours:
             # Trading Condition:
-            buy_condition = (da_total_renewable_prod[hour] > da_total_renewable_prod.mean()) and \
-                             (da_prices[hour] < da_prices.mean())  # Buy when DA forecast and price are favorable
+            buy_condition = (da_total_renewable_prod.iloc[hour] > da_total_renewable_prod.mean()) and \
+                             (da_prices.iloc[hour] < da_prices.mean())  # Buy when DA forecast and price are favorable
             
-            sell_condition = (id_total_renewable_prod[hour] < id_total_renewable_prod.mean()) and \
-                             (id_prices[hour] > id_prices.mean())  # Sell when Intraday forecast and price are favorable
+            sell_condition = (id_total_renewable_prod.iloc[hour] < id_total_renewable_prod.mean()) and \
+                             (id_prices.iloc[hour] > id_prices.mean())  # Sell when Intraday forecast and price are favorable
             
             if buy_condition:
-                buy_price = da_prices[hour]
-                sell_price = id_prices[hour]
+                buy_price = da_prices.iloc[hour]
+                sell_price = id_prices.iloc[hour]
                 profit = (sell_price - buy_price) * position_size
                 strategy_results.append({
                     "Date": date,
@@ -49,8 +48,8 @@ def trading_strategy(df, position_size=100):
                     "Trade": "Buy"
                 })
             elif sell_condition:
-                buy_price = da_prices[hour]
-                sell_price = id_prices[hour]
+                buy_price = da_prices.iloc[hour]
+                sell_price = id_prices.iloc[hour]
                 profit = (sell_price - buy_price) * position_size
                 strategy_results.append({
                     "Date": date,
@@ -70,8 +69,8 @@ def trading_strategy(df, position_size=100):
     return results_df
 
 # Sample DataFrame (replace with your actual data) 
+# Assuming the 'hourly_data.csv' contains a datetime column 'time' which is parsed as datetime and set as index
 
-#hourly data used.
 df = pd.read_csv("hourly_data.csv", parse_dates=["time"], index_col="time")
 
 # Call the strategy function
@@ -82,7 +81,6 @@ print("Cumulative Profit Over Time:")
 print(results_df)
 
 # Plot Cumulative Profit
-
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(

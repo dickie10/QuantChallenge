@@ -54,6 +54,72 @@ This will execute:
 - (`analysis.py`): Solves whole questions from 2.1 to 2.6.  
 - (`trade_strategy.py`): Trading strategy question number 2.7. 
 
+## Battery revenue 
+
+## Optimized Battery Trading Strategy
+
+### Overview
+This strategy optimizes revenue generation using a **1 MWh battery** by dynamically selecting the best times to **charge** and **discharge** based on **both Day Ahead (DA) and Intraday (ID) prices**.
+
+---
+
+### Intial Approach (Using Only DA Prices)
+1. **For each day:**
+   - Sort **Day Ahead Prices**.
+   - Select the **12 lowest hours** for **charging**.
+   - Select the **12 highest hours** for **discharging**.
+   - Compute revenue as:
+
+     ```
+     Total Revenue = Σ(Discharge Prices) - Σ(Charge Prices)
+     ```
+
+2. **Limitation**: This approach **ignores Intraday Prices**, potentially missing better charge/discharge opportunities.
+
+---
+
+### Improved Approach (Using Both DA and ID Prices)
+1. **For each day:**
+   - Instead of using **only DA prices**, consider **both DA and ID prices** at every hour.
+   - Create two new columns:
+     - **Best Charge Price**: The lowest price between DA and ID for that hour.
+     - **Best Discharge Price**: The highest price between DA and ID for that hour.
+   - Select:
+     - The **12 best hours for charging** (lowest prices from "Best Charge Price").
+     - The **12 best hours for discharging** (highest prices from "Best Discharge Price").
+   - Compute revenue using these optimized values.
+
+---
+
+### Why This is Better?
+✅ **Considers both DA and ID prices → More accurate market behavior**  
+✅ **Dynamically selects the best hours instead of blindly picking 12 hours in DA**  
+✅ **Maximizes revenue by charging at the lowest possible price and discharging at the highest**  
+
+---
+
+### Example Calculation
+For a given day, the following prices are available:
+
+| Hour  | DA Price (€) | ID Price (€) | Best Charge Price (€) | Best Discharge Price (€) |
+|-------|------------|------------|------------------|------------------|
+| 00:00 | 50 | 45 | 45 | 50 |
+| 01:00 | 48 | 47 | 47 | 48 |
+| 02:00 | 40 | 42 | 40 | 42 |
+| 12:00 | 60 | 62 | 60 | 62 |
+| 18:00 | 80 | 85 | 80 | 85 |
+| 22:00 | 100 | 95 | 95 | 100 |
+
+- **Old Approach:** Would only look at DA Prices and pick **50 for charging**.
+- **New Approach:** Finds **45 in ID market**, leading to higher profit.
+
+By always **charging at the lowest and discharging at the highest price available**, this strategy significantly increases revenue while maintaining the same battery capacity.
+
+---
+
+
+
+
 ## Trading Conditions for 2.7
 
 For each hour of the day, check whether the conditions meet the following, idea: More renewable day ahead forecast so less DA price and low renewable intraday forecast more the intraday price :
