@@ -54,7 +54,7 @@ This will execute:
 - (`analysis.py`): Solves whole questions from 2.1 to 2.6.  
 - (`trade_strategy.py`): Trading strategy question number 2.7. 
 
-## Battery revenue 
+## Battery revenue  task 2.6
 
 ## Optimized Battery Trading Strategy
 
